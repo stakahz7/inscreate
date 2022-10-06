@@ -127,7 +127,7 @@ generated_random_password = random_password_string + random_password_number
 
 print( color.GREEN + "[!] " + color.CWHITE +"Generated password = " + generated_random_password)
 
-random_day_number = str(random.randint(1, 28))
+random_day_number = str(random.randint(10, 28))
 
 random_year_number = str(random.randint(1975, 1998))
 
