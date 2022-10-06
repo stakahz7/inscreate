@@ -51,7 +51,7 @@ capabilities = webdriver.DesiredCapabilities.CHROME
 
 #webdriver
 
-url = "https://www.instagram.com/accounts/emailsignup/"
+url = "https://secure.runescape.com/m=account-creation/create_account"
 CHROME_DIR = ""
 
 browser = webdriver.Chrome(CHROME_DIR, options=options, desired_capabilities=capabilities)
@@ -61,17 +61,19 @@ print( color.GREEN + "[+] " + color.CWHITE + "Using useragent as : " + userAgent
 
 #Open ig signup url
 
-url = "https://www.instagram.com/accounts/emailsignup/"
+url = "https://secure.runescape.com/m=account-creation/create_account"
 browser.get(url)
 
 #elements
 
 time.sleep(3.517)
-email = browser.find_element(By.CSS_SELECTOR, 'div.WZdjL:nth-child(4) > div:nth-child(1) > label:nth-child(1) > input:nth-child(2)')
-fullname = browser.find_element(By.CSS_SELECTOR, 'div.WZdjL:nth-child(5) > div:nth-child(1) > label:nth-child(1) > input:nth-child(2)')
-username = browser.find_element(By.CSS_SELECTOR, 'div.WZdjL:nth-child(6) > div:nth-child(1) > label:nth-child(1) > input:nth-child(2)')
-Password = browser.find_element(By.CSS_SELECTOR, 'div.WZdjL:nth-child(7) > div:nth-child(1) > label:nth-child(1) > input:nth-child(2)')
-signup_button = browser.find_element(By.CSS_SELECTOR, 'div.bkEs3:nth-child(1)')
+email = browser.find_element(By.CSS_SELECTOR, 'div.l-vista__container:nth-child(1) > form:nth-child(0) > label:nth-child(0) > input:nth-child(0)')
+DateDay = browser.find_element(By.CSS_SELECTOR, 'div.l-vista__container:nth-child(5) > form:nth-child(0) > fieldset:nth-child(0) > div:nth-child(0) > label:nth-child(1) > input:nth-child(0)')
+DateMonth = browser.find_element(By.CSS_SELECTOR, 'div.l-vista__container:nth-child(5) > form:nth-child(0) > fieldset:nth-child(0) > div:nth-child(0) > label:nth-child(2) > input:nth-child(0)')
+DateYear = browser.find_element(By.CSS_SELECTOR, 'div.l-vista__container:nth-child(5) > form:nth-child(0) > fieldset:nth-child(0) > div:nth-child(0) > label:nth-child(3) > input:nth-child(0)')
+Password = browser.find_element(By.CSS_SELECTOR, 'div.l-vista__container:nth-child(1) > form:nth-child(0) > label:nth-child(0) > input:nth-child(0)')
+TermsBox = browser.find_element(By.CSS_SELECTOR, 'div.l-vista__container:nth-child(1) > form:nth-child(0) > label:nth-child(5) > div:nth-child(0) > input:nth-child(0)')
+signup_button = browser.find_element(By.CSS_SELECTOR, 'div.l-vista__container:nth-child(1) > form:nth-child(0) > label:nth-child(5) > div:nth-child(0) > button:nth-child(0)')
 
 # Create temporary email
 
@@ -125,6 +127,12 @@ generated_random_password = random_password_string + random_password_number
 
 print( color.GREEN + "[!] " + color.CWHITE +"Generated password = " + generated_random_password)
 
+random_day_number = str(random.randint(1, 28))
+
+random_year_number = str(random.randint(1975, 1998))
+
+random_month_number = str(random.randint(1, 12))
+
 #Fields to use 
 
 my_email = generated_email
@@ -136,13 +144,17 @@ my_password = generated_random_password
 
 email.send_keys(my_email)
 time.sleep(0.517)
-fullname.send_keys(my_fullname)
-time.sleep(0.312)
-username.send_keys(my_username)
-time.sleep(0.125)
 Password.send_keys(generated_random_password)
+time.sleep(0.312)
+DateDay.send_keys(random_day_number)
+time.sleep(0.125)
+DateMonth.send_keys(random_month_number)
+time.sleep(0.276)
+DateYear.send_keys(random_year_number)
+time.sleep(0.192)
+TermsBox.click()
 time.sleep(2)
-Password.send_keys(Keys.ENTER)
+signup_button.click()
 time.sleep(5)
 
 #elements next page
